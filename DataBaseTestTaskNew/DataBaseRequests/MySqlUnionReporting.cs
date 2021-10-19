@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using MySql.Data.MySqlClient;
 using System.IO;
 
@@ -12,10 +8,8 @@ namespace DataBaseTestTaskNew
     {
         public static void MinmumRunningTimeForTests()
         {
-            //string builder = Convert.ToString(MySqlUtil.GetBuilder()); - сначала я делал явное преобразование MySqlUtil.GetBuilder() в стрингу builder и дальше передавал стрингу,
-            //но потом в параметре создания объекта сделал ToString , спросить у Андрея как лучше;
             MySqlConnection connection = new MySqlConnection(MySqlUtil.GetBuilder().ToString());
-            string path = @"C:\Users\l.ermakovich\source\repos\DataBaseTestTaskNew\Resources\MinmumRunningTimeForTests.txt";
+            string path = Environment.CurrentDirectory+@"/Resources/MinmumRunningTimeForTests.txt";
             StreamWriter myFile = new StreamWriter(path);
             try
             {
@@ -47,7 +41,7 @@ namespace DataBaseTestTaskNew
         public static void ProjectsWithUniqueTests()
         {
             MySqlConnection connection = new MySqlConnection(MySqlUtil.GetBuilder().ToString());
-            string path = @"C:\Users\l.ermakovich\source\repos\DataBaseTestTaskNew\Resources\ProjectsWithUniqueTests.txt";
+            string path = Environment.CurrentDirectory + @"/Resources/ProjectsWithUniqueTests.txt";
             StreamWriter myFile = new StreamWriter(path);
             try
             {
@@ -76,7 +70,7 @@ namespace DataBaseTestTaskNew
         public static void TestsAfterNovember2015()
         {
             MySqlConnection connection = new MySqlConnection(MySqlUtil.GetBuilder().ToString());
-            string path = @"C:\Users\l.ermakovich\source\repos\DataBaseTestTaskNew\Resources\TestsAfterNovember2015.txt";
+            string path = Environment.CurrentDirectory + @"/Resources/TestsAfterNovember2015.txt";
             StreamWriter myFile = new StreamWriter(path);
             try
             {
@@ -105,7 +99,7 @@ namespace DataBaseTestTaskNew
         public static void NumberOfTestsOnFirefoxAndChrome()
         {
             MySqlConnection connection = new MySqlConnection(MySqlUtil.GetBuilder().ToString());
-            string path = @"C:\Users\l.ermakovich\source\repos\DataBaseTestTaskNew\Resources\NumberOfTestsOnFirefoxAndChrome.txt";
+            string path = Environment.CurrentDirectory + @"/Resources/NumberOfTestsOnFirefoxAndChrome.txt";
             StreamWriter myFile = new StreamWriter(path);
             try
             {

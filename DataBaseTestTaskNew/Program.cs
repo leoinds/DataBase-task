@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Data.SqlClient;
-using System.Configuration;
-using MySqlConnector;
-using MySql.Data.MySqlClient;
 
 namespace DataBaseTestTaskNew
 {

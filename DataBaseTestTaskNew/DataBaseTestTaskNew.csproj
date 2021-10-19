@@ -68,18 +68,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DBConfiguration.cs" />
-    <Compile Include="MySqlUnionReporting.cs" />
-    <Compile Include="MySqlUtil.cs" />
+    <Compile Include="Models\DBConfiguration.cs" />
+    <Compile Include="DataBaseRequests\MySqlUnionReporting.cs" />
+    <Compile Include="Utils\MySqlUtil.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+    <None Include="Resources\configuration.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Resources\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
