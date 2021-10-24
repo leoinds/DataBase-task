@@ -1,6 +1,7 @@
 ﻿using FirstTaskTestStackWhite.Pages;
 using System;
 using TechTalk.SpecFlow;
+using TestStackWhiteFramework;
 
 namespace FirstTaskTestStackWhite.StepDefinitions
 {
@@ -12,12 +13,50 @@ namespace FirstTaskTestStackWhite.StepDefinitions
         {
             calculatorPage = new CalculatorPage();
         }
-        [Given(@"the second number is (.*)")]
-        public void GivenTheSecondNumberIs(int p0)
+        [BeforeScenario]
+        [Given(@"open the calculator and closing instances")]
+        public void OpenTheApp()
         {
-            ScenarioContext.Current.Pending();
+            App.ApplicationLaunch();
         }
-        
+
+        [When(@"enter 12")]
+        public void Enter12()
+        {
+
+        }
+
+        [When(@"add with 999")]
+        public void Add999()
+        {
+
+        }
+
+        [When(@"remember the result M plus")]
+        public void RememberTheResult()
+        {
+
+        }
+
+        [When(@"enter 19")]
+        public void Enter19()
+        {
+
+        }
+
+        [When(@"add with a number in memory MR")]
+        public void AddWithMemoryNumber()
+        {
+
+        }
+
+        [AfterScenario]
+        [Then(@"result is 1030")]
+        public void ResultCheck()
+        {
+
+        }
+
         [Given(@"click the OK button")]
         public void GivenClickTheOKButton()
         {
