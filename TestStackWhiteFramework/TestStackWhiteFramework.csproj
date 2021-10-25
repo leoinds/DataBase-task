@@ -61,8 +61,12 @@
     <Compile Include="Utils\MyUtil.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="bin\Debug\Resources\configuration.json" />
+    <None Include="bin\Debug\Resources\en-US\calc.exe.mui" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="bin\Debug\Resources\calc.exe" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
