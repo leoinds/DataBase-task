@@ -1,6 +1,8 @@
 ﻿using FirstTaskTestStackWhite.Pages;
-using System;
+using NUnit.Framework;
+using System.Threading;
 using TechTalk.SpecFlow;
+using TestStack.White.UIItems.Finders;
 using TestStackWhiteFramework;
 
 namespace FirstTaskTestStackWhite.StepDefinitions
@@ -13,58 +15,62 @@ namespace FirstTaskTestStackWhite.StepDefinitions
         {
             calculatorPage = new CalculatorPage();
         }
-        [BeforeScenario]
+
         [Given(@"open the calculator and closing instances")]
         public void OpenTheApp()
         {
             App.ApplicationLaunch();
         }
-
         [When(@"enter 12")]
         public void Enter12()
         {
-
+            calculatorPage.ClickOneButton();
+            calculatorPage.ClickTwoButton();
+            Thread.Sleep(300);
         }
 
         [When(@"add with 999")]
         public void Add999()
         {
-
+            calculatorPage.ClickPlusButton();
+            for (var i = 0; i<3; i++)
+            {
+                calculatorPage.ClickNineButton();
+                Thread.Sleep(300);
+            }
+            calculatorPage.ClickEqualsButton();
         }
 
         [When(@"remember the result M plus")]
         public void RememberTheResult()
         {
-
+            calculatorPage.ClickMPlusButton();
+            Thread.Sleep(300);
         }
 
         [When(@"enter 19")]
         public void Enter19()
         {
-
+            calculatorPage.ClickOneButton();
+            calculatorPage.ClickNineButton();
+            Thread.Sleep(300);
         }
 
         [When(@"add with a number in memory MR")]
         public void AddWithMemoryNumber()
         {
-
+            calculatorPage.ClickPlusButton();
+            calculatorPage.ClickMRButton();
+            calculatorPage.ClickEqualsButton();
+            Thread.Sleep(300);
         }
 
-        [AfterScenario]
         [Then(@"result is 1030")]
         public void ResultCheck()
         {
-
+            //Assert.AreEqual("1030", SearchCriteria.ByAutomationId("158").ToString());
+            Assert.AreEqual("1030", calculatorPage.GetResult());
+            Thread.Sleep(3000);
         }
-
-        [Given(@"click the OK button")]
-        public void GivenClickTheOKButton()
-        {
-            calculatorPage.CliclOkButton();
-            //тут метода с пейджс? - да
-            //тут объект всегда калкпейдж? - да
-            //т.е. мы пишем обертку для метода в бейзэлемнтс, после чего пишем метод в пейджс, и с этим методом взаимодействуем в степдефинишенах- да
-        }
-
     }
 }

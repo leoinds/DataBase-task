@@ -19,21 +19,24 @@ namespace TestStackWhiteFramework
                   Application.Attach(process).Close();
                }
         }
-
-        //что знаичт инстансы калькулятора -- список всех открытых процессов калькулятора, через цикл закрываем каждый
-        public static Window GetWindow(SearchCriteria sc)
+        public static Window GetWindow(string app)
         {
-            return application.GetWindow(sc, InitializeOption.NoCache);
+            return application.GetWindow(app, InitializeOption.NoCache);
         }
 
         public static Application ApplicationLaunch()
         { 
             if (application == null)
             {
-                application = Application.Launch(@"D:\Calc\calc.exe");
+                //application = Application.Launch(@"D:\Calc\calc.exe");
+                application = Application.Launch(ConfigurationData.name);
             }
 
             return application;
+        }
+        public static void CloseApplication()
+        {
+                application.Kill();
         }
     }
 }

@@ -10,4 +10,3 @@ Scenario: Adding numbers
 	When enter 19
 	When add with a number in memory MR
 	Then result is 1030
-	Given click the OK button

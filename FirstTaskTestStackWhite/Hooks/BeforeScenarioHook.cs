@@ -7,9 +7,10 @@ namespace FirstTaskTestStackWhite.Hooks
     public class BeforeScenarioHook
     {
         [BeforeScenario]
-        public void Postcondition()
+        public void Precondition()
         {
-            App.CloseProcesses("calc.exe");
+            //App.CloseProcesses("calc.exe");
+            App.CloseProcesses(ConfigurationData.name);
         }
     }
 }

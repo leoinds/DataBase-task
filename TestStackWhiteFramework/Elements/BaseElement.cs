@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Windows;
 using TestStack.White.UIItems;
 using TestStack.White.UIItems.Finders;
 
@@ -22,7 +18,8 @@ namespace TestStackWhiteFramework
         protected T FindElement()
         {
             //TestLogger.Log($"Finding element {Name} by search criteria {searchCriteria}");
-            return App.GetWindow().Get<T>(searchCriteria);
+            //return App.GetWindow("Calculator").Get<T>(searchCriteria);
+            return App.GetWindow(ConfigurationData.windowName).Get<T>(searchCriteria);
         }
 
         public void Click()
@@ -30,11 +27,11 @@ namespace TestStackWhiteFramework
             //TestLogger.Log($"Clicking to element {Name}");
             FindElement().Click();
         }
-        //public Point GetLocation()
-        //{
-        //    TestLogger.Log($"Getting location of element {Name}");
-        //    return FindElement().Location;
-        //}
+        public Point GetLocation()
+        {
+            //TestLogger.Log($"Getting location of element {Name}");
+            return FindElement().Location;
+        }
 
         public bool IsExist()
         {
