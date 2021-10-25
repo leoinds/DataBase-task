@@ -1,5 +1,6 @@
 ﻿using TechTalk.SpecFlow;
 using TestStackWhiteFramework;
+using TestStackWhiteFramework.Utils;
 
 namespace FirstTaskTestStackWhite.Hooks
 {
@@ -10,7 +11,7 @@ namespace FirstTaskTestStackWhite.Hooks
         public void Precondition()
         {
             //App.CloseProcesses("calc.exe");
-            App.CloseProcesses(ConfigurationData.name);
+            App.CloseProcesses(MyUtil.GetPath().ToString());
         }
     }
 }

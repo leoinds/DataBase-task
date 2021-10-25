@@ -1,6 +1,7 @@
 ﻿using System.Windows;
 using TestStack.White.UIItems;
 using TestStack.White.UIItems.Finders;
+using TestStackWhiteFramework.Utils;
 
 namespace TestStackWhiteFramework
 {
@@ -19,7 +20,7 @@ namespace TestStackWhiteFramework
         {
             //TestLogger.Log($"Finding element {Name} by search criteria {searchCriteria}");
             //return App.GetWindow("Calculator").Get<T>(searchCriteria);
-            return App.GetWindow(ConfigurationData.windowName).Get<T>(searchCriteria);
+            return App.GetWindow(MyUtil.GetWindowName().ToString()).Get<T>(searchCriteria);
         }
 
         public void Click()

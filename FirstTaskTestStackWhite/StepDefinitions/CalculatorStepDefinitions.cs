@@ -2,7 +2,6 @@
 using NUnit.Framework;
 using System.Threading;
 using TechTalk.SpecFlow;
-using TestStack.White.UIItems.Finders;
 using TestStackWhiteFramework;
 
 namespace FirstTaskTestStackWhite.StepDefinitions

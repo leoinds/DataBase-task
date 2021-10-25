@@ -1,8 +1,8 @@
 ﻿using System.Diagnostics;
 using TestStack.White;
 using TestStack.White.Factory;
-using TestStack.White.UIItems.Finders;
 using TestStack.White.UIItems.WindowItems;
+using TestStackWhiteFramework.Utils;
 
 namespace TestStackWhiteFramework
 {
@@ -29,7 +29,7 @@ namespace TestStackWhiteFramework
             if (application == null)
             {
                 //application = Application.Launch(@"D:\Calc\calc.exe");
-                application = Application.Launch(ConfigurationData.name);
+                application = Application.Launch(MyUtil.GetPath().ToString());
             }
 
             return application;
