@@ -88,10 +88,14 @@
     <Compile Include="StepDefinitions\CalculatorStepDefinitions.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="bin\Debug\Resources\configuration.json" />
+    <None Include="bin\Debug\Resources\en-US\calc.exe.mui" />
     <None Include="Features\CalculatorTest.feature" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="bin\Debug\Resources\calc.exe" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\TestStackWhiteFramework\TestStackWhiteFramework.csproj">
       <Project>{7363be91-3497-4e9d-943f-fca90a34c961}</Project>

@@ -67,7 +67,6 @@ namespace FirstTaskTestStackWhite.StepDefinitions
         [Then(@"result is 1030")]
         public void ResultCheck()
         {
-            //Assert.AreEqual("1030", SearchCriteria.ByAutomationId("158").ToString());
             Assert.AreEqual("1030", calculatorPage.GetResult());
             Thread.Sleep(3000);
         }

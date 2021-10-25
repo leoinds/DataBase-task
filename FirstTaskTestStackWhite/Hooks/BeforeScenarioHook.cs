@@ -10,7 +10,6 @@ namespace FirstTaskTestStackWhite.Hooks
         [BeforeScenario]
         public void Precondition()
         {
-            //App.CloseProcesses("calc.exe");
             App.CloseProcesses(MyUtil.GetPath().ToString());
         }
     }

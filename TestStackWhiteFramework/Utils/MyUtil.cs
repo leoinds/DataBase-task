@@ -6,7 +6,10 @@ namespace TestStackWhiteFramework.Utils
 {
     public static class MyUtil
     {
-        private static readonly string pathToTheConfigFile = AppDomain.CurrentDomain.BaseDirectory + @"/Resources/configuration.json"; //я прописал путь calc.exe, но на своем компе я прописывал в JSON абсолютный путь к калькулятору 7 винды
+        private static readonly string pathToTheConfigFile = AppDomain.CurrentDomain.BaseDirectory + @"/Resources/configuration.json";
+        //я прописал путь calc.exe, но на своем компе я прописывал в JSON абсолютный путь к калькулятору 7 винды
+        //"C:\\Users\\l.ermakovich\\source\\repos\\TestStackWhiteFramework\\bin\\Debug\\Resources\\calc.exe"
+
 
         public static string GetPath()
         {
@@ -28,12 +31,10 @@ namespace TestStackWhiteFramework.Utils
                 WindowName = ""
             };
 
-            //Environment.CurrentDirectory + @"/Resources/configuration.json"
-            //var strJson = File.ReadAllText(@"C:\Users\l.ermakovich\source\repos\TestStackWhiteFramework\bin\Debug\Resources\configuration.json");
+            //не сработало: Environment.CurrentDirectory + @"/Resources/configuration.json"
             var strJson = File.ReadAllText(pathToTheConfigFile);
             json = JsonConvert.DeserializeObject<ConfigurationData>(strJson);
             return json.WindowName;
-
         }
     }
 }

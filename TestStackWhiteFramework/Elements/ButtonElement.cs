@@ -9,6 +9,5 @@ namespace TestStackWhiteFramework
         {
 
         }
-        //здесь еще могут быть уникальные для класса методы
     }
 }

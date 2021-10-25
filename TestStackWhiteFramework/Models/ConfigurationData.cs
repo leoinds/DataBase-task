@@ -5,6 +5,5 @@ namespace TestStackWhiteFramework
     {
         public string Path { get; set; }
         public string WindowName { get; set; }
-
     }
 }

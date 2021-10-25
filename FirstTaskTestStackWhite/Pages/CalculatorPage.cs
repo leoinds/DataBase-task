@@ -48,7 +48,6 @@ namespace FirstTaskTestStackWhite.Pages
         public string GetResult()
         {
             return
-                //App.GetWindow("Calculator").Get<Label>(SearchCriteria.ByAutomationId("150")).Name.ToString();
                 App.GetWindow(MyUtil.GetWindowName().ToString()).Get<Label>(SearchCriteria.ByAutomationId("150")).Name.ToString();
         }
     }
