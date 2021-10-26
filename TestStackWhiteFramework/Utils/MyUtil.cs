@@ -7,7 +7,7 @@ namespace TestStackWhiteFramework.Utils
     public static class MyUtil
     {
         private static readonly string pathToTheConfigFile = AppDomain.CurrentDomain.BaseDirectory + @"/Resources/configuration.json";
-        //я прописал путь calc.exe, но на своем компе я прописывал в JSON абсолютный путь к калькулятору 7 винды
+        //я прописал путь calc1.exe, но на своем компе я прописывал в JSON абсолютный путь к калькулятору 7 винды
         //"C:\\Users\\l.ermakovich\\source\\repos\\TestStackWhiteFramework\\bin\\Debug\\Resources\\calc.exe"
 
 
