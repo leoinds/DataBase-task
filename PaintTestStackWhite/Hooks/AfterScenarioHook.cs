@@ -10,8 +10,7 @@ namespace FirstTaskTestStackWhite.Hooks
         [AfterScenario]
         public void Postcondition()
         {
-            App.CloseProcesses(MyUtil.GetPath().ToString());
-            App.CloseApplication();
+            App.CloseProcesses(MyUtil.GetValueFromConfig().Path.ToString());
         }
     }
 }

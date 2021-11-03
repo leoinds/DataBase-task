@@ -1,6 +1,9 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
+using System.Windows.Automation;
 using TestStack.White.UIItems;
 using TestStack.White.UIItems.Finders;
+using TestStack.White.Utility;
 using TestStackWhiteFramework.Utils;
 
 namespace TestStackWhiteFramework
@@ -16,11 +19,11 @@ namespace TestStackWhiteFramework
             Name = name;
             this.searchCriteria = searchCriteria;
         }
+
         protected T FindElement()
         {
             //TestLogger.Log($"Finding element {Name} by search criteria {searchCriteria}");
-            //return App.GetWindow("Calculator").Get<T>(searchCriteria);
-            return App.GetWindow(MyUtil.GetWindowName().ToString()).Get<T>(searchCriteria);
+            return App.GetWindow(MyUtil.GetValueFromConfig().WindowName.ToString()).Get<T>(searchCriteria);
         }
 
         public void Click()
@@ -33,11 +36,15 @@ namespace TestStackWhiteFramework
             //TestLogger.Log($"Getting location of element {Name}");
             return FindElement().Location;
         }
-
-        public bool IsExist()
+        public void WaitWhileBusy()
         {
-            bool isExist;
-            return FindElement().Visible;
+            Retry.For(ShellIsBusy, isBusy => isBusy, TimeSpan.FromSeconds(30));
+        }
+
+        bool ShellIsBusy()
+        {
+            var currentPropertyValue = App.GetWindow(MyUtil.GetValueFromConfig().WindowName.ToString()).AutomationElement.GetCurrentPropertyValue(AutomationElement.HelpTextProperty);
+            return currentPropertyValue != null && ((string)currentPropertyValue).Contains("Busy");
         }
     }
 }

@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // Общие сведения об этой сборке предоставляются следующим набором
 // набора атрибутов. Измените значения этих атрибутов для изменения сведений,
 // связанные со сборкой.
-[assembly: AssemblyTitle("FirstTaskTestStackWhite")]
+[assembly: AssemblyTitle("PaintTaskTestStackWhite")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("FirstTaskTestStackWhite")]
+[assembly: AssemblyProduct("PaintTaskTestStackWhite")]
 [assembly: AssemblyCopyright("Copyright ©  2021")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // Следующий GUID служит для идентификации библиотеки типов, если этот проект будет видимым для COM
-[assembly: Guid("336e4975-58c5-4764-aebc-538f6758893d")]
+[assembly: Guid("8a5114b9-53a7-44da-8385-6eee410e69c4")]
 
 // Сведения о версии сборки состоят из указанных ниже четырех значений:
 //

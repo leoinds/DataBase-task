@@ -10,7 +10,7 @@ namespace FirstTaskTestStackWhite.Hooks
         [BeforeScenario]
         public void Precondition()
         {
-            App.CloseProcesses(MyUtil.GetPath().ToString());
+            App.CloseProcesses(MyUtil.GetValueFromConfig().Path.ToString());
         }
     }
 }
