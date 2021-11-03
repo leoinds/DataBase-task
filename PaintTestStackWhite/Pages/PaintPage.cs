@@ -1,7 +1,6 @@
 ﻿using NUnit.Framework;
 using PaintTaskTestStackWhite.Elements;
 using System;
-using System.Drawing;
 using System.Threading;
 using System.Windows.Automation;
 using System.Windows.Forms;
@@ -38,7 +37,6 @@ namespace PaintTestStackWhite.Pages
             App.GetWindow(MyUtil.GetValueFromConfig().WindowName.ToString()).Mouse.Location = new System.Windows.Point(location.X - 25, location.Y + 35);
             App.GetWindow(MyUtil.GetValueFromConfig().WindowName.ToString()).Mouse.Click();
             App.GetWindow(MyUtil.GetValueFromConfig().WindowName.ToString()).WaitWhileBusy();
-
             App.GetWindow(MyUtil.GetValueFromConfig().WindowName.ToString()).Mouse.Location = new System.Windows.Point(location.X - 25, location.Y + 155);
             App.GetWindow(MyUtil.GetValueFromConfig().WindowName.ToString()).Mouse.Click();
         }
@@ -51,8 +49,10 @@ namespace PaintTestStackWhite.Pages
         }
         public void PasteImage() 
         {
+            Window window = App.GetWindow(MyUtil.GetValueFromConfig().WindowName.ToString());
             var location = resizeButton.GetLocation();
             App.GetWindow(MyUtil.GetValueFromConfig().WindowName.ToString()).WaitWhileBusy();
+            window.WaitWhileBusy(); //спросить какое ожидани более верное по написанию
             App.GetWindow(MyUtil.GetValueFromConfig().WindowName.ToString()).Mouse.Location = new System.Windows.Point(location.X - 15, location.Y);
             App.GetWindow(MyUtil.GetValueFromConfig().WindowName.ToString()).Mouse.Click();
             App.GetWindow(MyUtil.GetValueFromConfig().WindowName.ToString()).Mouse.Location = new System.Windows.Point(location.X, location.Y + 155);
@@ -62,8 +62,6 @@ namespace PaintTestStackWhite.Pages
             Thread.Sleep(300); //если вставить явное ожидание через имя окна и WaitWhileBusy() пропускает шаг
             App.GetWindow(MyUtil.GetValueFromConfig().WindowName.ToString()).Mouse.Location = new System.Windows.Point(location.X - 15, location.Y + 205);
             App.GetWindow(MyUtil.GetValueFromConfig().WindowName.ToString()).Mouse.Click();
-
-
             //у меня не получилось вставить картинку из буфера обмена, я вставил ее через клики курсора
         }
 
