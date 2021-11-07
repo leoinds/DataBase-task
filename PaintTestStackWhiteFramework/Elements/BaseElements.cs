@@ -41,7 +41,7 @@ namespace TestStackWhiteFramework
             Retry.For(ShellIsBusy, isBusy => isBusy, TimeSpan.FromSeconds(30));
         }
 
-        bool ShellIsBusy()
+        private bool ShellIsBusy()
         {
             var currentPropertyValue = App.GetWindow(MyUtil.GetValueFromConfig().WindowName.ToString()).AutomationElement.GetCurrentPropertyValue(AutomationElement.HelpTextProperty);
             return currentPropertyValue != null && ((string)currentPropertyValue).Contains("Busy");

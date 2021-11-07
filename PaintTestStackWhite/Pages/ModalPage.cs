@@ -12,5 +12,9 @@ namespace PaintTestStackWhite.Pages
         {
             NumberButton(text, automationId).Click();
         }
+        public void ClickDoNotSaveButton()
+        {
+            doNotSaveButton.Click();
+        }
     }
 }

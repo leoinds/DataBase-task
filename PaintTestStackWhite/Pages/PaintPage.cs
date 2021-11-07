@@ -1,6 +1,4 @@
-﻿using NUnit.Framework;
-using PaintTaskTestStackWhite.Elements;
-using System;
+﻿using System;
 using System.Threading;
 using System.Windows.Automation;
 using System.Windows.Forms;
@@ -15,6 +13,13 @@ namespace PaintTestStackWhite.Pages
     {
 
         private static readonly string pathToTheImage = AppDomain.CurrentDomain.BaseDirectory + @"/Resources/";
+        public static string PathToTheImage
+        {
+            get
+            {
+                return pathToTheImage;
+            }
+        }
 
         private ButtonElement resizeButton = new ButtonElement("ResizeButton", SearchCriteria.ByControlType(ControlType.Button).AndByText("Resize"));
         private ButtonElement cutButton = new ButtonElement("CutButton", SearchCriteria.ByControlType(ControlType.Button).AndByText("Cut"));
@@ -40,29 +45,19 @@ namespace PaintTestStackWhite.Pages
             App.GetWindow(MyUtil.GetValueFromConfig().WindowName.ToString()).Mouse.Location = new System.Windows.Point(location.X - 25, location.Y + 155);
             App.GetWindow(MyUtil.GetValueFromConfig().WindowName.ToString()).Mouse.Click();
         }
-        public void CopyImage()
+        public void CopyImageToTheClipboard(string pictureName)
         {
-            Thread thread = new Thread(() => Clipboard.SetImage(System.Drawing.Image.FromFile(pathToTheImage + MyUtil.GetValueFromConfig().ImageName.ToString())));
+            Thread thread = new Thread(() => Clipboard.SetImage(System.Drawing.Image.FromFile(pathToTheImage + pictureName)));
             thread.SetApartmentState(ApartmentState.STA); //Set the thread to STA
             thread.Start();
             thread.Join();
         }
         public void PasteImage() 
         {
-            Window window = App.GetWindow(MyUtil.GetValueFromConfig().WindowName.ToString());
-            var location = resizeButton.GetLocation();
             App.GetWindow(MyUtil.GetValueFromConfig().WindowName.ToString()).WaitWhileBusy();
-            window.WaitWhileBusy(); //спросить какое ожидани более верное по написанию
-            App.GetWindow(MyUtil.GetValueFromConfig().WindowName.ToString()).Mouse.Location = new System.Windows.Point(location.X - 15, location.Y);
+            var location = cutButton.GetLocation();
+            App.GetWindow(MyUtil.GetValueFromConfig().WindowName.ToString()).Mouse.Location = new System.Windows.Point(location.X - 25, location.Y + 15);
             App.GetWindow(MyUtil.GetValueFromConfig().WindowName.ToString()).Mouse.Click();
-            App.GetWindow(MyUtil.GetValueFromConfig().WindowName.ToString()).Mouse.Location = new System.Windows.Point(location.X, location.Y + 155);
-            App.GetWindow(MyUtil.GetValueFromConfig().WindowName.ToString()).Mouse.Click();
-            App.GetWindow(MyUtil.GetValueFromConfig().WindowName.ToString()).Mouse.Location = new System.Windows.Point(location.X - 25, location.Y + 155);
-            App.GetWindow(MyUtil.GetValueFromConfig().WindowName.ToString()).Mouse.RightClick();
-            Thread.Sleep(300); //если вставить явное ожидание через имя окна и WaitWhileBusy() пропускает шаг
-            App.GetWindow(MyUtil.GetValueFromConfig().WindowName.ToString()).Mouse.Location = new System.Windows.Point(location.X - 15, location.Y + 205);
-            App.GetWindow(MyUtil.GetValueFromConfig().WindowName.ToString()).Mouse.Click();
-            //у меня не получилось вставить картинку из буфера обмена, я вставил ее через клики курсора
         }
 
         public Window GetModalWindow()
@@ -70,15 +65,11 @@ namespace PaintTestStackWhite.Pages
             var modalWindow = App.GetWindow(MyUtil.GetValueFromConfig().WindowName.ToString()).ModalWindow(MyUtil.GetValueFromConfig().ModalWindowName.ToString());
             return modalWindow;
         }
-        
-        public void CopyOriginalImage()
+
+        public void CopyOriginalImage(string pictureName)
         {
-            ImageElement.CopyFiles(pathToTheImage, pathToTheImage);
+            MyUtil.CopyFiles(pathToTheImage, pathToTheImage, pictureName);
         }
 
-        public void ResultCheck()
-        {
-            Assert.AreEqual(0.0f, ImageElement.GetDifference(pathToTheImage + MyUtil.GetValueFromConfig().ImageName.ToString(), pathToTheImage + MyUtil.GetValueFromConfig().CopyImageName.ToString(), 3), "The image has been changed");           
-        }
     }
 }

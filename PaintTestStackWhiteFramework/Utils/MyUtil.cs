@@ -21,5 +21,22 @@ namespace TestStackWhiteFramework.Utils
             json = JsonConvert.DeserializeObject<ConfigurationData>(strJson);
             return json;
         }
+        public static void CopyFiles(string sourceDir, string backupDir, string pictureName)
+        {
+            try
+            {
+                string[] picList = Directory.GetFiles(sourceDir, "*.jpg");
+                foreach (string f in picList)
+                {
+                    string fName = f.Substring(sourceDir.Length + 1);
+                    File.Copy(Path.Combine(sourceDir, pictureName), Path.Combine(backupDir, MyUtil.GetValueFromConfig().CopyImageName.ToString()), true);
+                }
+            }
+
+            catch (DirectoryNotFoundException dirNotFound)
+            {
+                Console.WriteLine(dirNotFound.Message);
+            }
+        }
     }
 }

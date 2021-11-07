@@ -1,6 +1,5 @@
-﻿using TestStack.White.UIItems.Finders;
-using TestStack.White.UIItems;
-using System;
+﻿using TestStack.White.UIItems;
+using TestStack.White.UIItems.Finders;
 
 namespace TestStackWhiteFramework
 {

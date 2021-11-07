@@ -1,19 +1,23 @@
-﻿using PaintTestStackWhite.Pages;
+﻿using NUnit.Framework;
+using PaintTaskTestStackWhite.Elements;
+using PaintTestStackWhite.Pages;
 using System.Windows.Forms;
 using TechTalk.SpecFlow;
 using TestStackWhiteFramework;
+using TestStackWhiteFramework.Utils;
 
 namespace PaintTestStackWhite.StepDefinitions
 {
     [Binding]
     public class PaintStepDefinitions
     {
-        ModalPage modalPage = new ModalPage();
+
         private PaintPage paintPage;
-        
+        private ModalPage modalPage;
         public PaintStepDefinitions()
         {
             paintPage = new PaintPage();
+            modalPage = new ModalPage();
         }
 
         [Given(@"open the Paint")]
@@ -22,43 +26,41 @@ namespace PaintTestStackWhite.StepDefinitions
             App.ApplicationLaunch();
         }
         
-        [When(@"user uploads an image")]
+        [When(@"user inserts an image from the clipboard")]
         public void WhenAUserUploadsAnImage()
         {
-            paintPage.CopyOriginalImage();
-            paintPage.CopyImage();
             paintPage.PasteImage();
         }
         
-        [When(@"clicks the Select all button")]
+        [When(@"user clicks Select all button")]
         public void WhenClicksTheSelectAllButton()
         {
             paintPage.ClickSelectButton();
         }
         
-        [When(@"clicks the Cut button")]
-        public void WhenClicksTheCutButton()
+        [When(@"user clicks the (.*) button")]
+        public void WhenClicksTheCutButton(string button)
         {
-            paintPage.ClickButtonByText("Cut");
+            paintPage.ClickButtonByText(button);
         }
         
-        [When(@"сloses the paint")]
+        [When(@"user сloses the paint")]
         public void WhenСlosesThePaint()
         {
             paintPage.CloseApp();
         }
         
-        [When(@"declines to change the results")]
+        [When(@"user declines to change the results")]
         public void WhenDeclinesToChangeTheResults()
         {
             paintPage.GetModalWindow();
-            modalPage.ClickButtonByAutomationId("DoNotSaveButton", "CommandButton_7");
+            modalPage.ClickDoNotSaveButton();
         }
         
-        [Then(@"the original picture has not changed")]
-        public void ThenTheOriginalPictureHasNotChanged()
+        [Then(@"the original picture (.*) has not changed")]
+        public void ThenTheOriginalPictureHasNotChanged(string pictureName)
         {
-            paintPage.ResultCheck();
+            Assert.AreEqual(0.0f, ImageElement.GetDifference(PaintPage.PathToTheImage + pictureName, PaintPage.PathToTheImage + MyUtil.GetValueFromConfig().CopyImageName.ToString(), 3), "The image has been changed");
         }
     }
 }
